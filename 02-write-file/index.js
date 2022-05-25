@@ -11,13 +11,11 @@ process.on('SIGINT', closeConsole);
 
 const createFile = fs.createWriteStream(path.join(__dirname, 'text.txt'));
 
-stdout.write('Введите текст:\r\n');
+stdout.write('Введите текст:\n');
 stdin.on('data', message => {
-  if (message.toString() === 'exit\r\n') {
+  if (message.toString().trim() === 'exit') {
     closeConsole();
   } else {
     createFile.write(message);
   }
 });
-
-
